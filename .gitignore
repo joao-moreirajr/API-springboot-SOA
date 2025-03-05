@@ -1,0 +1,64 @@
+# Arquivos de ajuda
+HELP.md
+
+# Ignorar a pasta target (builds do Maven)
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Ignorar logs
+*.log
+
+# Arquivos de configuração do ambiente
+.env
+
+# Ignorar dependências locais
+node_modules/
+
+### STS (Spring Tool Suite) ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.metadata/
+bin/
+tmp/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Arquivos de cache do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos temporários
+*.tmp
+
+# Ignorar dependências do Gradle (caso use)
+.gradle/
+build/
+
+# Ignorar arquivos de cache do JetBrains (WebStorm, PyCharm, Rider, etc.)
+/.idea/
