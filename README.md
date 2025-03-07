@@ -10,6 +10,14 @@ Este projeto é uma API REST simples desenvolvida com **Spring Boot**, usada par
 - Maven
 - Postman (para testes de API)
 
+Criar aplicação Java Spring Boot
+Spring Initialzr é utilizado para criar projetos com Sprint Boot
+
+
+![spring_initializar_setup](https://github.com/user-attachments/assets/146bdeae-8983-47e6-9e37-29245e48baa0)
+
+<img width="480" alt="spring_initializar_web_spring" src="https://github.com/user-attachments/assets/648b242a-0f9d-4426-baef-e08565ca501b" />
+
 ---
 
 ## 🚀 **Como Rodar o Projeto Localmente**
