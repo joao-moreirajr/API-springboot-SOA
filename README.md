@@ -25,6 +25,7 @@ Spring Initialzr é utilizado para criar projetos com Sprint Boot
 
 git clone https://github.com/seu-usuario/nome-do-repositorio.git
 cd nome-do-repositorio
+
 2️⃣ Configurar o Ambiente
 Garanta que você tem o Java 17+ e o Maven instalados.
 Se precisar instalar o Maven, siga a documentação oficial.
@@ -44,18 +45,17 @@ Aqui estão os principais endpoints da API e como testá-los no Postman ou cURL.
 curl -X GET http://localhost:8080/produtos
 🔹 2. Buscar Produto por ID
 📌 GET /produtos/{id}
-
 curl -X GET http://localhost:8080/produtos/1
+
 🔹 3. Criar um Novo Produto
 📌 POST /produtos
 📌 Body (JSON):
-
 {
   "nome": "Teclado Gamer",
   "preco": 250.0
 }
-
 curl -X POST http://localhost:8080/produtos -H "Content-Type: application/json" -d '{"nome": "Teclado Gamer", "preco": 250.0}'
+
 🔹 4. Atualizar um Produto
 📌 PUT /produtos/{id} 📌 Body (JSON):
 
@@ -65,10 +65,12 @@ curl -X POST http://localhost:8080/produtos -H "Content-Type: application/json" 
 }
 
 curl -X PUT http://localhost:8080/produtos/1 -H "Content-Type: application/json" -d '{"nome": "Teclado Mecânico RGB", "preco": 300.0}'
+
 🔹 5. Excluir um Produto
 📌 DELETE /produtos/{id}
 
 curl -X DELETE http://localhost:8080/produtos/1
+
 🗄️ Acessar o Banco de Dados H2
 O projeto usa H2 Database para armazenar os dados temporariamente.
 Para acessar o banco:
@@ -78,6 +80,7 @@ Inicie a aplicação (mvn spring-boot:run).
 Abra no navegador:
 
 http://localhost:8080/h2-console
+
 Configuração de Acesso:
 
 JDBC URL: jdbc:h2:mem:testdb
@@ -92,10 +95,5 @@ Este projeto faz parte das aulas de SOA e Web Services da FIAP e tem como objeti
 📌 Dúvidas? Sugestões?
 Entre em contato ou contribua no repositório! 🚀
 
-📜 Licença
-Este projeto está licenciado sob a MIT License. Você pode usá-lo e modificá-lo como quiser.
-
-🎯 Próximos Passos
-📌 Para os alunos:
 
 🔍 Testar os endpoints no Postman
