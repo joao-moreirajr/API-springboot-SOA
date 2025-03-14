@@ -1,6 +1,6 @@
 ﻿# 🛠️ API REST com Spring Boot
 
-Este projeto é uma API REST simples desenvolvida com **Spring Boot**, usada para demonstrar conceitos de **CRUD (Create, Read, Update, Delete)** durante as aulas da faculdade.
+Este projeto é uma API REST desenvolvida com **Spring Boot**, utilizada para demonstrar conceitos de **CRUD (Create, Read, Update, Delete)**, persistência de dados com **Spring Data JPA** e carregamento inicial de dados via **DataLoader**
 
 ## 📌 **Tecnologias Utilizadas**
 - Java 17+
@@ -25,9 +25,67 @@ Spring Initialzr é utilizado para criar projetos com Sprint Boot
 
 git clone https://github.com/seu-usuario/nome-do-repositorio.git
 cd nome-do-repositorio
+
 2️⃣ Configurar o Ambiente
 Garanta que você tem o Java 17+ e o Maven instalados.
 Se precisar instalar o Maven, siga a documentação oficial.
+
+🔄 Persistência dos Dados
+Agora o banco de dados H2 foi configurado para ser persistente entre reinicializações. Isso significa que os produtos cadastrados não serão apagados ao reiniciar a aplicação.
+
+📌 Configuração do Banco de Dados no application.properties
+# Configuração do H2 (banco persistente)
+spring.datasource.url=jdbc:h2:file:./data/produtos
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+# Hibernate mantém os dados entre reinícios
+spring.jpa.hibernate.ddl-auto=update
+
+# Console do H2 habilitado
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+spring.h2.console.settings.web-allow-others=true
+
+📥 Carregamento Inicial de Dados com DataLoader
+Para garantir que o banco de dados tenha um conjunto inicial de produtos ao iniciar a aplicação, utilizamos um DataLoader.
+
+📌 Implementação do DataLoader.java
+package com.example.api.config;
+
+import com.example.api.model.Produto;
+import com.example.api.repository.ProdutoRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
+
+@Configuration
+public class DataLoader {
+
+    @Bean
+    CommandLineRunner initDatabase(ProdutoRepository produtoRepository) {
+        return args -> {
+            if (produtoRepository.count() == 0) {
+                produtoRepository.saveAll(List.of(
+                        new Produto("Teclado Gamer", 250.0),
+                        new Produto("Mouse Sem Fio", 150.0),
+                        new Produto("Monitor 24'' Full HD", 1200.0),
+                        new Produto("Cadeira Ergonômica", 800.0),
+                        new Produto("Fone Bluetooth", 300.0)
+                ));
+                System.out.println("📌 Dados iniciais inseridos no banco!");
+            } else {
+                System.out.println("✅ Banco de dados já contém registros.");
+            }
+        };
+    }
+}
+
+
 
 3️⃣ Rodar o Projeto
 Para iniciar o servidor, execute:
@@ -69,6 +127,7 @@ curl -X PUT http://localhost:8080/produtos/1 -H "Content-Type: application/json"
 📌 DELETE /produtos/{id}
 
 curl -X DELETE http://localhost:8080/produtos/1
+
 🗄️ Acessar o Banco de Dados H2
 O projeto usa H2 Database para armazenar os dados temporariamente.
 Para acessar o banco:
@@ -86,16 +145,17 @@ Senha: (deixe em branco)
 Execute a consulta para ver os produtos:
 
 SELECT * FROM PRODUTOS;
+
+
 👨‍🏫 Sobre o Projeto
-Este projeto faz parte das aulas de SOA e Web Services da FIAP e tem como objetivo ensinar os alunos a criar e consumir APIs REST com Spring Boot.
+
+Este projeto faz parte das aulas de SOA e Web Services da FIAP, com o objetivo de ensinar os alunos a: 
+
+✅ Criar e consumir APIs REST com Spring Boot
+✅ Utilizar Spring Data JPA para persistência de dados
+✅ Configurar um banco de dados H2 persistente
+✅ Carregar dados iniciais com um DataLoader
 
 📌 Dúvidas? Sugestões?
 Entre em contato ou contribua no repositório! 🚀
-
-📜 Licença
-Este projeto está licenciado sob a MIT License. Você pode usá-lo e modificá-lo como quiser.
-
-🎯 Próximos Passos
-📌 Para os alunos:
-
-🔍 Testar os endpoints no Postman
+ 
